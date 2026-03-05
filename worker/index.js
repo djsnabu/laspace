@@ -20,6 +20,7 @@ export default {
 
     const isAdminPath =
       path === '/api/admin/events' ||
+      path.startsWith('/api/admin/') ||
       path === '/api/upload' ||
       (path.startsWith('/api/') && request.method !== 'GET');
 
@@ -92,11 +93,11 @@ export default {
     }
 
     // Protected mutations
-      if (request.method !== 'GET' && path.startsWith('/api/')) {
+    if (request.method !== 'GET' && path.startsWith('/api/')) {
       if (!checkAuth(request)) return Response.json({ error: 'Unauthorized' }, { status: 401, headers: adminCors });
 
       // Create event
-      if (path === '/api/events' && request.method === 'POST') {
+      if (path === '/api/admin/events' && request.method === 'POST') {
         const body = await request.json();
         const result = await env.DB.prepare(
           'INSERT INTO events (name, date, date_label, venue, description, ticket_url, image_url, color, visible, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
@@ -104,8 +105,8 @@ export default {
         return Response.json({ success: true, id: result.meta.last_row_id }, { headers: adminCors });
       }
 
-      // Update event
-      if (path.match(/^\/api\/events\/\d+$/) && request.method === 'PUT') {
+      // Update event (support both /api/admin/events/:id and /api/events/:id)
+      if (path.match(/^\/(?:api\/admin\/events|api\/events)\/\d+$/) && request.method === 'PUT') {
         const id = path.split('/').pop();
         const body = await request.json();
         await env.DB.prepare(
@@ -114,9 +115,10 @@ export default {
         return Response.json({ success: true }, { headers: adminCors });
       }
 
-      // Delete event
-      if (path.match(/^\/api\/events\/\d+$/) && request.method === 'DELETE') {
-        const id = path.split('/').pop();
+      // Delete event: /api/admin/events/:id, /api/events/:id, or /api/admin/delete/:id (adblock-safe)
+      const deleteMatch = path.match(/^\/api\/admin\/delete\/(\d+)$/) || path.match(/^\/(?:api\/admin\/events|api\/events)\/(\d+)$/);
+      if (deleteMatch && request.method === 'DELETE') {
+        const id = deleteMatch[1];
         await env.DB.prepare('DELETE FROM events WHERE id=?').bind(id).run();
         return Response.json({ success: true }, { headers: adminCors });
       }

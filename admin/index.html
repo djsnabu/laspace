@@ -103,7 +103,7 @@
   </div>
 
   <script>
-    var API_BASE = 'https://api.laspacefin.com';
+    var API_BASE = 'https://laspace-api.nabil-581.workers.dev';
     var token = localStorage.getItem('ls-token') || '';
     var DAYS_FI = ['Su','Ma','Ti','Ke','To','Pe','La'];
 
@@ -252,9 +252,19 @@
     function deleteEvent(id) {
       if (!confirm('Poistetaanko tapahtuma?')) return;
       var xhr = new XMLHttpRequest();
-      xhr.open('DELETE', API_BASE + '/api/admin/events/' + id, true);
+      // Use /api/admin/delete/:id to avoid adblockers blocking URLs with "events"
+      xhr.open('DELETE', API_BASE + '/api/admin/delete/' + Number(id), true);
       xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-      xhr.onload = function() { loadEvents(); };
+      xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          loadEvents();
+        } else {
+          alert('Poisto epäonnistui: ' + xhr.status + ' ' + (xhr.responseText || ''));
+        }
+      };
+      xhr.onerror = function() {
+        alert('Verkkovirhe – tarkista yhteys ja adblock.');
+      };
       xhr.send();
     }
 
