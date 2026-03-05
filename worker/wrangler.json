@@ -1,0 +1,18 @@
+{
+  "name": "laspace-api",
+  "main": "index.js",
+  "compatibility_date": "2024-12-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "laspace-events",
+      "database_id": "9a86a176-b94e-4c04-9d4b-1ebbb0050b8d"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "IMAGES",
+      "bucket_name": "laspace-images"
+    }
+  ]
+}
