@@ -103,7 +103,7 @@
   </div>
 
   <script>
-    var API_BASE = 'https://laspace-api.nabil-581.workers.dev';
+    var API_BASE = 'https://api.laspacefin.com';
     var token = localStorage.getItem('ls-token') || '';
     var DAYS_FI = ['Su','Ma','Ti','Ke','To','Pe','La'];
 
@@ -252,7 +252,7 @@
     function deleteEvent(id) {
       if (!confirm('Poistetaanko tapahtuma?')) return;
       var xhr = new XMLHttpRequest();
-      xhr.open('DELETE', API_BASE + '/api/events/' + id, true);
+      xhr.open('DELETE', API_BASE + '/api/admin/events/' + id, true);
       xhr.setRequestHeader('Authorization', 'Bearer ' + token);
       xhr.onload = function() { loadEvents(); };
       xhr.send();
@@ -340,7 +340,7 @@
       });
 
       var xhr = new XMLHttpRequest();
-      xhr.open(id ? 'PUT' : 'POST', API_BASE + '/api/events' + (id ? '/' + id : ''), true);
+      xhr.open(id ? 'PUT' : 'POST', API_BASE + '/api/admin/events' + (id ? '/' + id : ''), true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.setRequestHeader('Authorization', 'Bearer ' + token);
       xhr.onload = function() {
