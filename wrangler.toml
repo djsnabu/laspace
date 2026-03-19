@@ -1,0 +1,28 @@
+name = "laspace"
+main = ".open-next/worker.js"
+compatibility_date = "2024-12-30"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "laspace-events"
+database_id = "9a86a176-b94e-4c04-9d4b-1ebbb0050b8d"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "laspace-images"
+
+[[routes]]
+pattern = "laspacefin.com/*"
+zone_name = "laspacefin.com"
+
+[[routes]]
+pattern = "www.laspacefin.com/*"
+zone_name = "laspacefin.com"
+
+[vars]
+ADMIN_PASS = "laspace2026"
