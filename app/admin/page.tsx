@@ -37,14 +37,25 @@ function computeDateLabel(dateStr: string): string {
   return `${dow} ${day}.${month}.`;
 }
 
+interface Contact {
+  id: number;
+  name: string;
+  email: string;
+  message: string;
+  read: number;
+  created_at: string;
+}
+
 export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [authed, setAuthed] = useState(false);
+  const [activeTab, setActiveTab] = useState<"events" | "images" | "contacts">("events");
   const [events, setEvents] = useState<Event[]>([]);
   const [editing, setEditing] = useState<Event | null>(null);
   const [form, setForm] = useState(emptyForm);
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [contacts, setContacts] = useState<Contact[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef("");
 
@@ -95,8 +106,22 @@ export default function AdminPage() {
     }
   }
 
+  async function loadContacts() {
+    const res = await fetch("/api/contact", { headers: { Authorization: `Bearer ${passwordRef.current}` } });
+    if (res.ok) setContacts(await res.json());
+  }
+
+  async function markRead(id: number) {
+    await fetch("/api/contact", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${passwordRef.current}` },
+      body: JSON.stringify({ id }),
+    });
+    setContacts((prev) => prev.map((c) => c.id === id ? { ...c, read: 1 } : c));
+  }
+
   useEffect(() => {
-    if (authed) loadEvents();
+    if (authed) { loadEvents(); loadContacts(); }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authed]);
 
@@ -205,16 +230,75 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-space-black pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-extrabold mb-8">
-        <span className="text-neon-purple">Tapahtumien</span>{" "}
-        <span className="text-neon-blue">hallinta</span>
+      <h1 className="text-3xl font-extrabold mb-6">
+        <span className="text-neon-purple">La Space</span>{" "}
+        <span className="text-neon-blue">Admin</span>
       </h1>
+
+      {/* Tab navigation */}
+      <div className="flex gap-2 mb-8 border-b border-white/10 pb-0">
+        {(["events", "images", "contacts"] as const).map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`px-5 py-2 text-sm font-bold rounded-t-lg transition-all relative ${activeTab === tab ? "bg-neon-purple/20 text-neon-purple border border-b-0 border-neon-purple/30" : "text-gray-400 hover:text-white"}`}
+          >
+            {tab === "events" ? "Tapahtumat" : tab === "images" ? "Kuvat" : (
+              <span className="flex items-center gap-1">
+                Viestit
+                {contacts.filter(c => !c.read).length > 0 && (
+                  <span className="bg-neon-purple text-white text-xs rounded-full px-1.5 py-0.5 min-w-[20px] text-center">
+                    {contacts.filter(c => !c.read).length}
+                  </span>
+                )}
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
 
       {message && (
         <div className="bg-green-900/30 border border-green-500/30 text-green-400 px-4 py-2 rounded-lg mb-6 text-sm">
           {message}
         </div>
       )}
+
+      {/* Contacts tab */}
+      {activeTab === "contacts" && (
+        <div className="space-y-4">
+          {contacts.length === 0 && <p className="text-gray-500 text-center py-12">Ei viestejä vielä.</p>}
+          {contacts.map((c) => (
+            <div key={c.id} className={`bg-black/50 border rounded-lg p-5 ${c.read ? "border-white/10" : "border-neon-purple/40"}`}>
+              <div className="flex justify-between items-start mb-2">
+                <div>
+                  <span className="font-bold text-white">{c.name}</span>
+                  <span className="text-gray-400 text-sm ml-3">{c.email}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-gray-600">{c.created_at.replace("T", " ").slice(0, 16)}</span>
+                  {!c.read && (
+                    <button onClick={() => markRead(c.id)} className="text-xs bg-neon-purple/20 hover:bg-neon-purple/30 text-neon-purple px-3 py-1 rounded transition-all">
+                      Merkitse luetuksi
+                    </button>
+                  )}
+                </div>
+              </div>
+              <p className="text-gray-300 text-sm whitespace-pre-wrap">{c.message}</p>
+              {!c.read && <div className="mt-2 w-2 h-2 rounded-full bg-neon-purple" />}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Images tab placeholder — existing logic */}
+      {activeTab === "images" && (
+        <div className="text-center py-12 text-gray-400">
+          <p>Avaa <a href="/admin/images" className="text-neon-blue hover:underline">kuvagalleria</a> hallinnoidaksesi kuvia.</p>
+        </div>
+      )}
+
+      {/* Events tab */}
+      {activeTab === "events" && <>
 
       {/* Add/Edit form */}
       <form onSubmit={handleSave} autoComplete="off" className="bg-black/50 border border-neon-purple/20 rounded-lg p-6 mb-8">
@@ -414,6 +498,7 @@ export default function AdminPage() {
           </div>
         ))}
       </div>
+      </>}
     </div>
   );
 }

@@ -1,4 +1,35 @@
+"use client";
+import { useState } from "react";
+
 export default function Footer() {
+  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        setStatus("ok");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section id="contact" className="py-20 relative z-20 border-t border-white/10 bg-space-black">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,7 +64,7 @@ export default function Footer() {
 
           <div className="bg-white/5 p-8 rounded-2xl border border-white/10">
             <h3 className="text-xl font-bold mb-6">Jätä viesti</h3>
-            <form action="https://formspree.io/f/xplaceholder" method="POST" className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <input
                   type="text"
@@ -63,10 +94,17 @@ export default function Footer() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-colors"
+                disabled={status === "sending"}
+                className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50"
               >
-                Lähetä
+                {status === "sending" ? "Lähetetään..." : "Lähetä"}
               </button>
+              {status === "ok" && (
+                <p className="text-green-400 text-sm text-center">Viesti lähetetty! Olemme yhteydessä pian.</p>
+              )}
+              {status === "error" && (
+                <p className="text-red-400 text-sm text-center">Jokin meni pieleen. Yritä uudelleen.</p>
+              )}
             </form>
           </div>
         </div>
