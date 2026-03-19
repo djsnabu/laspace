@@ -7,7 +7,7 @@ export default function Hero() {
           className="w-full h-full bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2000&auto=format&fit=crop')",
+              "url('/assets/hero.jpg')",
           }}
         />
       </div>
