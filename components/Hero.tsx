@@ -22,7 +22,7 @@ export default function Hero() {
           </span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto font-light">
-          La Space tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban.
+          LaSpace tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban.
         </p>
         <a
           href="#events"

@@ -8,11 +8,20 @@ function checkAuth(req: NextRequest, password: string): boolean {
   return auth.replace("Bearer ", "") === password;
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   const { env } = await getCloudflareContext({ async: true });
-  const result = await env.DB.prepare(
-    "SELECT * FROM events WHERE visible = 1 ORDER BY date ASC"
-  ).all();
+  const { searchParams } = new URL(req.url);
+  const past = searchParams.get("past");
+  const today = new Date().toISOString().split("T")[0];
+
+  let query: string;
+  if (past === "1") {
+    query = `SELECT * FROM events WHERE visible = 1 AND date < '${today}' ORDER BY date DESC`;
+  } else {
+    query = `SELECT * FROM events WHERE visible = 1 AND date >= '${today}' ORDER BY date ASC`;
+  }
+
+  const result = await env.DB.prepare(query).all();
   return NextResponse.json(result.results);
 }
 

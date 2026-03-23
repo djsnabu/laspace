@@ -231,7 +231,7 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-space-black pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
       <h1 className="text-3xl font-extrabold mb-6">
-        <span className="text-neon-purple">La Space</span>{" "}
+        <span className="text-neon-purple">LaSpace</span>{" "}
         <span className="text-neon-blue">Admin</span>
       </h1>
 

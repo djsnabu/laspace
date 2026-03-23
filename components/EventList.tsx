@@ -16,13 +16,14 @@ interface Event {
   sort_order?: number;
 }
 
-export default function EventList() {
+export default function EventList({ past }: { past?: boolean }) {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch("/api/events")
+    const url = past ? "/api/events?past=1" : "/api/events";
+    fetch(url)
       .then((r) => r.json())
       .then((data) => {
         setEvents(data);
@@ -32,7 +33,7 @@ export default function EventList() {
         setError(true);
         setLoading(false);
       });
-  }, []);
+  }, [past]);
 
   if (loading) {
     return <p className="text-gray-500 col-span-full text-center py-12">Ladataan tapahtumia...</p>;
@@ -43,7 +44,7 @@ export default function EventList() {
   }
 
   if (!events.length) {
-    return <p className="text-gray-500 col-span-full text-center py-12">Ei tulevia tapahtumia.</p>;
+    return <p className="text-gray-600 col-span-full text-center py-12">{past ? "Ei menneitä tapahtumia." : "Ei tulevia tapahtumia."}</p>;
   }
 
   return (
@@ -51,13 +52,15 @@ export default function EventList() {
       {events.map((e) => {
         const isBlue = e.color === "blue";
         const borderColor = isBlue ? "hover:border-neon-blue/50" : "hover:border-neon-purple/50";
-        const badgeBg = isBlue ? "bg-neon-blue text-black" : "bg-neon-purple text-white";
+        const badgeBg = isBlue
+          ? past ? "bg-neon-blue/40 text-white" : "bg-neon-blue text-black"
+          : past ? "bg-neon-purple/40 text-white" : "bg-neon-purple text-white";
         const ticketUrl = e.ticket_url || "#";
 
         return (
           <div
             key={e.id}
-            className={"fade-in visible bg-white/5 border border-white/10 rounded-2xl overflow-hidden transition-colors group " + borderColor}
+            className={"fade-in visible border rounded-2xl overflow-hidden transition-colors group " + borderColor + (past ? " bg-white/[0.03] border-white/5 opacity-70" : " bg-white/5 border-white/10")}
           >
             <div className="h-48 bg-space-gray relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
