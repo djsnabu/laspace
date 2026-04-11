@@ -111,7 +111,7 @@ export default function Footer() {
 
         <div className="mt-20 pt-8 border-t border-white/10 text-center text-sm text-gray-600 flex flex-col md:flex-row justify-between items-center">
           <p>&copy; 2026 LaSpace. Kaikki oikeudet pidätetään.</p>
-          <p className="mt-2 md:mt-0">Design &amp; Code: KivaMedia.fi</p>
+          <p className="mt-2 md:mt-0">Website by <a href="https://niceevents.fi" target="_blank" rel="noopener noreferrer" className="hover:text-neon-blue transition-colors">Nice Events</a></p>
         </div>
       </div>
     </section>
