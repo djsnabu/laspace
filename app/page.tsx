@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import EventList from "@/components/EventList";
+import Newsletter from "@/components/Newsletter";
 
 export const dynamic = "force-dynamic";
 
@@ -45,6 +46,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Newsletter */}
+      <Newsletter />
 
       {/* Instagram Section */}
       <section id="instagram" className="py-24 relative z-20 border-t border-white/5 bg-gradient-to-b from-transparent to-space-gray/50">

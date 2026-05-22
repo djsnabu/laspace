@@ -7,6 +7,30 @@ function checkAuth(req: NextRequest, password: string): boolean {
   return auth.replace("Bearer ", "") === password;
 }
 
+async function syncToBrevo(env: any, email: string, firstName?: string, lastName?: string) {
+  if (!env.BREVO_API_KEY) return;
+  try {
+    await fetch("https://api.brevo.com/v3/contacts", {
+      method: "POST",
+      headers: {
+        "api-key": env.BREVO_API_KEY,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        attributes: {
+          FIRSTNAME: firstName || "",
+          LASTNAME: lastName || "",
+        },
+        listIds: [parseInt(env.BREVO_LIST_ID || "2")],
+        updateEnabled: true,
+      }),
+    });
+  } catch {
+    // Brevo sync is non-blocking — don't fail the request
+  }
+}
+
 export async function POST(req: NextRequest) {
   const { env } = await getCloudflareContext({ async: true });
   const body = await req.json();
@@ -16,6 +40,10 @@ export async function POST(req: NextRequest) {
   await env.DB.prepare(
     "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)"
   ).bind(body.name, body.email, body.message).run();
+
+  // Sync to Brevo (fire-and-forget — don't await, don't block)
+  syncToBrevo(env, body.email, body.name);
+
   return NextResponse.json({ ok: true }, { status: 201 });
 }
 

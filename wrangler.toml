@@ -27,3 +27,5 @@ zone_name = "laspacefin.com"
 [vars]
 # Admin password must be set as a Wrangler secret (not hardcoded here)
 # Set via: wrangler secret put ADMIN_PASS
+# Brevo API key — set via: wrangler secret put BREVO_API_KEY
+BREVO_LIST_ID = "2"
