@@ -13,7 +13,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0">
             <Link href="/">
-              <Image src="/assets/logo-white.png" alt="LaSpace" width={120} height={40} className="h-10 w-auto" />
+              <Image src="/assets/logo-white.png" alt="Laspace" width={120} height={40} className="h-10 w-auto" />
             </Link>
           </div>
           <div className="hidden md:block">

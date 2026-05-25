@@ -35,7 +35,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold mb-6">Tuodaan LaSpace sinun yökerhoosi?</h2>
+            <h2 className="text-3xl font-bold mb-6">Tuodaan Laspace sinun yökerhoosi?</h2>
             <p className="text-gray-400 mb-8">
               Etsitkö uutta, vetävää konseptia, joka täyttää lattian ja tuo ihmiset paikalle? Ota yhteyttä, niin
               suunnitellaan juuri teidän tilaan sopiva ilta.
@@ -110,7 +110,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 pt-8 border-t border-white/10 text-center text-sm text-gray-600 flex flex-col md:flex-row justify-between items-center">
-          <p>&copy; 2026 LaSpace. Kaikki oikeudet pidätetään.</p>
+          <p>&copy; 2026 Laspace. Kaikki oikeudet pidätetään.</p>
           <p className="mt-2 md:mt-0">Website by <a href="https://niceevents.fi" target="_blank" rel="noopener noreferrer" className="hover:text-neon-blue transition-colors">Nice Events</a></p>
         </div>
       </div>

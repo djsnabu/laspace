@@ -4,22 +4,22 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "LaSpace | Klubeja yökerhoihin",
+  title: "Laspace | Klubeja yökerhoihin",
   description:
-    "LaSpace tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban. Ota yhteyttä ja suunnitellaan ilta.",
+    "Laspace tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban. Ota yhteyttä ja suunnitellaan ilta.",
   openGraph: {
-    title: "LaSpace | Klubeja yökerhoihin",
+    title: "Laspace | Klubeja yökerhoihin",
     description:
-      "LaSpace tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban.",
+      "Laspace tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban.",
     type: "website",
     url: "https://laspacefin.com",
     images: [{ url: "/assets/og-image.jpg" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LaSpace | Klubeja yökerhoihin",
+    title: "Laspace | Klubeja yökerhoihin",
     description:
-      "LaSpace tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban.",
+      "Laspace tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban.",
     images: ["/assets/og-image.jpg"],
   },
 };
