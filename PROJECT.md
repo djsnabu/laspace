@@ -94,6 +94,72 @@ Ei vaadi buildia/deployta — secret päivittyy heti.
 ## Huomioita
 
 - `.wrangler/`, `.next/`, `.open-next/`, `next-env.d.ts` eivät kuulu repoon
-- Deploy OVERWRITEAA kaikki worker-reitit — varmista `wrangler.toml`:ssa kaikki domainit
+- **Deploy OVERWRITEAA kaikki worker-reitit** — varmista `wrangler.toml`:ssa kaikki domainit. Jos unohdat domainin, se putoaa pois ja sivusto "palautuu ajassa" (vanha Pages-deploy aktivoituu).
 - Jos `CLOUDFLARE_API_TOKEN` on asetettu ympäristössä, se ohittaa OAuthin. Vanhentunut token aiheuttaa "Invalid access token" -virheen. Korjaus: `unset CLOUDFLARE_API_TOKEN`
 - Admin-paneeli on React SPA ilman frameworkia (app/admin/page.tsx) — ei Next.js-serverikomponentteja adminissa
+- Workerissa on web-pohjainen konsoli: `npx wrangler tail` (live-lokit)
+
+## Cloudflare-kirjautuminen
+
+```bash
+# OAuth (suositeltu, avaa selaimen)
+cd ~/Projects/laspace
+unset CLOUDFLARE_API_TOKEN
+npx wrangler login
+
+# Tai API-tokenilla
+export CLOUDFLARE_API_TOKEN=cfut_...
+```
+
+## D1-tietokanta
+
+**Tietokanta:** `laspace-events` (id: `9a86a176-b94e-4c04-9d4b-1ebbb0050b8d`)
+
+```sql
+-- events-taulu
+CREATE TABLE events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  date TEXT NOT NULL,           -- YYYY-MM-DD
+  date_label TEXT,              -- esim. "Pe 25.6."
+  venue TEXT NOT NULL,
+  description TEXT,
+  ticket_url TEXT,
+  image_url TEXT,
+  color TEXT DEFAULT 'purple',  -- 'purple' | 'blue'
+  visible INTEGER DEFAULT 1,   -- 0 = piilotettu
+  sort_order INTEGER DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- contacts-taulu (yhteydenotot lomakkeesta)
+CREATE TABLE contacts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  message TEXT NOT NULL,
+  read INTEGER DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+Suora SQL-konsoli: `npx wrangler d1 execute laspace-events --command="SELECT * FROM events;"`
+
+## Sähköpostit (Brevo / Sendinblue)
+
+- **API-avain:** Wrangler secret `BREVO_API_KEY`
+- **Lista-ID:** 2 (newsletter-tilaajat)
+- Contact form lähettää automaattisesti Brevoon
+- Newsletter-tilaus → Brevo-lista 2
+
+## Sähköpostit (Cloudflare Email Routing)
+
+- `info@laspaceevents.fi` → `ganzemutabazi@outlook.com`
+- Aktivoidaan kun DNS propagoituu (zone status: active)
+
+## Asiakas
+
+- **Yritys:** Laspace / Ganze Mutabazi
+- **Sähköposti:** ganzemutabazi@outlook.com
+- **Some:** @laspaceevents (IG), Laspaceevents (FB)
+- **Lipunmyynti:** kide.app
