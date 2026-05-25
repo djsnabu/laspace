@@ -1,6 +1,6 @@
 # Laspace
 
-Website for Laspace event venue — [laspaceevents.com](https://laspaceevents.com).
+Website for Laspace event venue — [laspaceevents.fi](https://laspaceevents.fi).
 
 ## Tech Stack
 
