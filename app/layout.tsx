@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Laspace tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban.",
     type: "website",
-    url: "https://laspacefin.com",
+    url: "https://laspaceevents.com",
     images: [{ url: "/assets/og-image.jpg" }],
   },
   twitter: {

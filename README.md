@@ -1,6 +1,6 @@
 # Laspace
 
-Website for Laspace event venue — [laspacefin.com](https://laspacefin.com).
+Website for Laspace event venue — [laspaceevents.com](https://laspaceevents.com).
 
 ## Tech Stack
 

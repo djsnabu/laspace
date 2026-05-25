@@ -17,12 +17,12 @@ binding = "IMAGES"
 bucket_name = "laspace-images"
 
 [[routes]]
-pattern = "laspacefin.com/*"
-zone_name = "laspacefin.com"
+pattern = "laspaceevents.com/*"
+zone_name = "laspaceevents.com"
 
 [[routes]]
-pattern = "www.laspacefin.com/*"
-zone_name = "laspacefin.com"
+pattern = "www.laspaceevents.com/*"
+zone_name = "laspaceevents.com"
 
 [vars]
 # Admin password must be set as a Wrangler secret (not hardcoded here)
