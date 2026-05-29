@@ -24,14 +24,6 @@ zone_name = "laspaceevents.fi"
 pattern = "www.laspaceevents.fi/*"
 zone_name = "laspaceevents.fi"
 
-[[routes]]
-pattern = "laspacefin.com/*"
-zone_name = "laspacefin.com"
-
-[[routes]]
-pattern = "www.laspacefin.com/*"
-zone_name = "laspacefin.com"
-
 [vars]
 # Admin password must be set as a Wrangler secret (not hardcoded here)
 # Set via: wrangler secret put ADMIN_PASS
