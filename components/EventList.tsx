@@ -10,6 +10,7 @@ interface Event {
   venue: string;
   description: string;
   ticket_url?: string;
+  ticket2_url?: string;
   image_url?: string;
   color?: string;
   visible?: number;
@@ -55,7 +56,10 @@ export default function EventList({ past }: { past?: boolean }) {
         const badgeBg = isBlue
           ? past ? "bg-neon-blue/40 text-white" : "bg-neon-blue text-black"
           : past ? "bg-neon-purple/40 text-white" : "bg-neon-purple text-white";
-        const ticketUrl = e.ticket_url || "#";
+        const kideUrl = e.ticket_url;
+        const bilettiUrl = e.ticket2_url;
+        const hasKide = !!kideUrl;
+        const hasBiletti = !!bilettiUrl;
 
         return (
           <div
@@ -88,14 +92,34 @@ export default function EventList({ past }: { past?: boolean }) {
                 {e.venue}
               </p>
               <p className="text-sm text-gray-500 mb-6">{e.description}</p>
-              <a
-                href={ticketUrl}
-                target={ticketUrl !== "#" ? "_blank" : undefined}
-                rel={ticketUrl !== "#" ? "noopener noreferrer" : undefined}
-                className="block text-center border border-white/20 hover:bg-white/10 py-2 rounded-lg font-medium transition-colors"
-              >
-                Liput &amp; Info
-              </a>
+              {hasKide || hasBiletti ? (
+                <div className="flex gap-2">
+                  {hasKide && (
+                    <a
+                      href={kideUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center border border-white/20 hover:bg-white/10 py-2 rounded-lg font-medium transition-colors text-sm"
+                    >
+                      Kide.App
+                    </a>
+                  )}
+                  {hasBiletti && (
+                    <a
+                      href={bilettiUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center border border-white/20 hover:bg-white/10 py-2 rounded-lg font-medium transition-colors text-sm"
+                    >
+                      Biletti.fi
+                    </a>
+                  )}
+                </div>
+              ) : (
+                <div className="text-center border border-white/5 py-2 rounded-lg text-sm text-gray-600">
+                  Liput tulossa
+                </div>
+              )}
             </div>
           </div>
         );

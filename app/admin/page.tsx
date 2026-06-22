@@ -10,6 +10,7 @@ interface Event {
   venue: string;
   description: string;
   ticket_url?: string;
+  ticket2_url?: string;
   image_url?: string;
   color?: string;
   visible?: number;
@@ -23,6 +24,7 @@ const emptyForm = {
   venue: "",
   description: "",
   ticket_url: "",
+  ticket2_url: "",
   image_url: "",
   color: "purple",
   visible: 1,
@@ -194,6 +196,7 @@ export default function AdminPage() {
       venue: event.venue,
       description: event.description,
       ticket_url: event.ticket_url || "",
+      ticket2_url: event.ticket2_url || "",
       image_url: event.image_url || "",
       color: event.color || "purple",
       visible: event.visible ?? 1,
@@ -342,12 +345,22 @@ export default function AdminPage() {
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-400 mb-1">Lippu-linkki</label>
+            <label className="block text-sm text-gray-400 mb-1">Lippu-linkki (Kide.App)</label>
             <input
               type="url"
               value={form.ticket_url}
               onChange={(e) => setForm({ ...form, ticket_url: e.target.value })}
-              placeholder="https://..."
+              placeholder="https://kide.app/..."
+              className={inputClass}
+            />
+          </div>
+          <div>
+            <label className="block text-sm text-gray-400 mb-1">Lippu-linkki (Biletti.fi)</label>
+            <input
+              type="url"
+              value={form.ticket2_url}
+              onChange={(e) => setForm({ ...form, ticket2_url: e.target.value })}
+              placeholder="https://biletti.fi/..."
               className={inputClass}
             />
           </div>

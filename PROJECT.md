@@ -125,6 +125,7 @@ CREATE TABLE events (
   venue TEXT NOT NULL,
   description TEXT,
   ticket_url TEXT,
+  ticket2_url TEXT,           -- Biletti.fi linkki
   image_url TEXT,
   color TEXT DEFAULT 'purple',  -- 'purple' | 'blue'
   visible INTEGER DEFAULT 1,   -- 0 = piilotettu

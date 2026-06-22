@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
   }
   const body = await req.json();
   await env.DB.prepare(
-    "INSERT INTO events (name, date, date_label, venue, description, ticket_url, image_url, color, visible, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    "INSERT INTO events (name, date, date_label, venue, description, ticket_url, ticket2_url, image_url, color, visible, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
   )
     .bind(
       body.name,
@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
       body.venue,
       body.description || "",
       body.ticket_url || "",
+      body.ticket2_url || "",
       body.image_url || "",
       body.color || "purple",
       body.visible ?? 1,
@@ -57,7 +58,7 @@ export async function PUT(req: NextRequest) {
   }
   const body = await req.json();
   await env.DB.prepare(
-    "UPDATE events SET name=?, date=?, date_label=?, venue=?, description=?, ticket_url=?, image_url=?, color=?, visible=? WHERE id=?"
+    "UPDATE events SET name=?, date=?, date_label=?, venue=?, description=?, ticket_url=?, ticket2_url=?, image_url=?, color=?, visible=? WHERE id=?"
   )
     .bind(
       body.name,
@@ -66,6 +67,7 @@ export async function PUT(req: NextRequest) {
       body.venue,
       body.description || "",
       body.ticket_url || "",
+      body.ticket2_url || "",
       body.image_url || "",
       body.color || "purple",
       body.visible ?? 1,
