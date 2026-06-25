@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://laspaceevents.fi"),
   title: "Laspace | Klubeja yökerhoihin",
   description:
     "Laspace tuo yökerhoihin unohtumattomat klubikonseptit, huippu-DJ:t ja täydellisen viban. Ota yhteyttä ja suunnitellaan ilta.",
