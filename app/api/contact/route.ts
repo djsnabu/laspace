@@ -53,19 +53,11 @@ async function syncToBrevo(env: any, email: string, firstName?: string, lastName
   }
 }
 
-class ContactEmailError extends Error {
-  constructor(
-    message: string,
-    public status?: number,
-    public details?: string,
-  ) {
-    super(message);
-  }
-}
+class ContactEmailError extends Error {}
 
 async function sendContactEmail(env: any, data: { name: string; email: string; message: string }) {
   if (!env.BREVO_API_KEY) {
-    throw new ContactEmailError("BREVO_API_KEY is not configured", 500, "missing-brevo-api-key");
+    throw new ContactEmailError("BREVO_API_KEY is not configured");
   }
 
   const safeName = escapeHtml(data.name);
@@ -113,7 +105,7 @@ async function sendContactEmail(env: any, data: { name: string; email: string; m
 
   const responseText = await res.text();
   if (!res.ok) {
-    throw new ContactEmailError("Brevo email send failed", res.status, responseText.slice(0, 500));
+    throw new ContactEmailError(`Brevo email send failed: ${res.status} ${responseText}`);
   }
 
   try {
@@ -149,12 +141,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, emailSent: true, messageId: emailResult.messageId }, { status: 201 });
   } catch (error) {
     console.error("Contact email failed", error);
-    const debug = error instanceof ContactEmailError
-      ? { status: error.status, details: error.details }
-      : { status: 500, details: error instanceof Error ? error.message : "unknown-error" };
-
     return NextResponse.json(
-      { error: "Message saved but email delivery failed", debug },
+      { error: "Message saved but email delivery failed" },
       { status: 502 }
     );
   }
