@@ -1,33 +1,63 @@
 const galleryItems = [
   {
-    title: "Hollaback",
-    subtitle: "Freetime · tunnelmakuvia tulossa",
-    image: "/api/images/1782143689934.png",
+    title: "CLAMO LOLA",
+    subtitle: "Tanssilattian energiaa",
+    image: "/assets/gallery/clamo-lola-01.jpg",
   },
   {
-    title: "Laspace Events Live",
-    subtitle: "Keikat, DJ:t ja yleisö",
-    image: "/api/images/1782143933610.png",
+    title: "CLAMO LOLA",
+    subtitle: "Täysi klubi ja käsienmeri",
+    image: "/assets/gallery/clamo-lola-02.jpg",
   },
   {
-    title: "Klubi-illat",
-    subtitle: "Parhaat hetket tanssilattialta",
-    image: "/assets/hero.jpg",
+    title: "CLAMO LOLA",
+    subtitle: "Ystävät, juomat ja ilta käynnissä",
+    image: "/assets/gallery/clamo-lola-03.jpg",
   },
   {
-    title: "DJ-vibat",
-    subtitle: "Laspace Events DJ:t",
-    image: "/assets/hero.jpg",
+    title: "CLAMO LOLA",
+    subtitle: "Hetki tanssilattialta",
+    image: "/assets/gallery/clamo-lola-04.jpg",
   },
   {
-    title: "Yleisö",
-    subtitle: "Energia ja fiilis",
-    image: "/api/images/1782143689934.png",
+    title: "CLAMO LOLA",
+    subtitle: "Klubivalot ja täysi tunnelma",
+    image: "/assets/gallery/clamo-lola-05.jpg",
   },
   {
-    title: "Menneet tapahtumat",
-    subtitle: "Lisää kuvia päivitetään pian",
-    image: "/api/images/1782143933610.png",
+    title: "LASPACE DJ",
+    subtitle: "DJ pitää illan liikkeessä",
+    image: "/assets/gallery/clamo-lola-06.jpg",
+  },
+  {
+    title: "CLAMO LOLA",
+    subtitle: "Vihreät valot ja yökerhofiilis",
+    image: "/assets/gallery/clamo-lola-07.jpg",
+  },
+  {
+    title: "CLAMO LOLA",
+    subtitle: "Porukka yhdessä kameralle",
+    image: "/assets/gallery/clamo-lola-08.jpg",
+  },
+  {
+    title: "FREETIME",
+    subtitle: "Jono ja tapahtumailta ulkona",
+    image: "/assets/gallery/clamo-lola-09.jpg",
+  },
+  {
+    title: "CLAMO LOLA",
+    subtitle: "Yleisö ja klubin lämpö",
+    image: "/assets/gallery/clamo-lola-10.jpg",
+  },
+  {
+    title: "CLAMO LOLA",
+    subtitle: "Kädet ylös, ilta huipussa",
+    image: "/assets/gallery/clamo-lola-11.jpg",
+  },
+  {
+    title: "CLAMO LOLA",
+    subtitle: "Yhteiskuva tapahtuman keskeltä",
+    image: "/assets/gallery/clamo-lola-12.jpg",
   },
 ];
 
@@ -40,8 +70,8 @@ export default function Gallery() {
           <h2 className="text-4xl md:text-6xl font-black mb-5 uppercase tracking-tight">Kuvagalleria</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto mb-6" />
           <p className="max-w-2xl mx-auto text-gray-400">
-            Kuvia ja tunnelmia Laspace Eventsin klubi-illoista. Lisäämme tänne menneiden tapahtumien kuvia sitä mukaa,
-            kun kuvamateriaalia saadaan mukaan sivulle.
+            Kuvia ja tunnelmia Laspace Eventsin klubi-illoista. Mukana yleisöä, DJ-hetkiä ja täysiä
+            tanssilattioita menneistä tapahtumista.
           </p>
         </div>
 
