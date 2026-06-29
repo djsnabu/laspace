@@ -1,62 +1,20 @@
 const galleryItems = [
   {
-    title: "CLAMO LOLA",
-    subtitle: "Tanssilattian energiaa",
-    image: "/assets/gallery/clamo-lola-01.jpg",
-  },
-  {
-    title: "CLAMO LOLA",
-    subtitle: "Täysi klubi ja käsienmeri",
     image: "/assets/gallery/clamo-lola-02.jpg",
   },
   {
-    title: "CLAMO LOLA",
-    subtitle: "Ystävät, juomat ja ilta käynnissä",
-    image: "/assets/gallery/clamo-lola-03.jpg",
-  },
-  {
-    title: "CLAMO LOLA",
-    subtitle: "Hetki tanssilattialta",
     image: "/assets/gallery/clamo-lola-04.jpg",
   },
   {
-    title: "CLAMO LOLA",
-    subtitle: "Klubivalot ja täysi tunnelma",
     image: "/assets/gallery/clamo-lola-05.jpg",
   },
   {
-    title: "LASPACE DJ",
-    subtitle: "DJ pitää illan liikkeessä",
-    image: "/assets/gallery/clamo-lola-06.jpg",
-  },
-  {
-    title: "CLAMO LOLA",
-    subtitle: "Vihreät valot ja yökerhofiilis",
     image: "/assets/gallery/clamo-lola-07.jpg",
   },
   {
-    title: "CLAMO LOLA",
-    subtitle: "Porukka yhdessä kameralle",
-    image: "/assets/gallery/clamo-lola-08.jpg",
-  },
-  {
-    title: "FREETIME",
-    subtitle: "Jono ja tapahtumailta ulkona",
-    image: "/assets/gallery/clamo-lola-09.jpg",
-  },
-  {
-    title: "CLAMO LOLA",
-    subtitle: "Yleisö ja klubin lämpö",
-    image: "/assets/gallery/clamo-lola-10.jpg",
-  },
-  {
-    title: "CLAMO LOLA",
-    subtitle: "Kädet ylös, ilta huipussa",
     image: "/assets/gallery/clamo-lola-11.jpg",
   },
   {
-    title: "CLAMO LOLA",
-    subtitle: "Yhteiskuva tapahtuman keskeltä",
     image: "/assets/gallery/clamo-lola-12.jpg",
   },
 ];
@@ -78,7 +36,7 @@ export default function Gallery() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {galleryItems.map((item, index) => (
             <article
-              key={`${item.title}-${index}`}
+              key={`${item.image}-${index}`}
               className="group relative h-64 overflow-hidden bg-space-gray border border-white/10 hover:border-neon-purple/60 transition-all duration-300"
             >
               <div
