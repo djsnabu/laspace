@@ -117,7 +117,7 @@ export default function EventList({ past }: { past?: boolean }) {
                 </div>
               ) : (
                 <div className="text-center border border-white/5 py-2 rounded-lg text-sm text-gray-600">
-                  Liput tulossa
+                  {past ? "Tapahtuma pidetty" : "Liput tulossa"}
                 </div>
               )}
             </div>
