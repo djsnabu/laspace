@@ -85,13 +85,7 @@ export default function Gallery() {
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                 style={{ backgroundImage: `url('${item.image}')` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
               <div className="absolute inset-0 bg-neon-purple/0 group-hover:bg-neon-purple/10 transition-colors duration-300" />
-              <div className="absolute left-5 right-5 bottom-5">
-                <p className="text-xs uppercase tracking-[0.25em] text-neon-blue mb-2">Kuva {String(index + 1).padStart(2, "0")}</p>
-                <h3 className="text-2xl font-bold text-white drop-shadow-lg">{item.title}</h3>
-                <p className="text-sm text-gray-300 mt-1">{item.subtitle}</p>
-              </div>
             </article>
           ))}
         </div>
