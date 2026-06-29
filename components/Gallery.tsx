@@ -1,72 +1,72 @@
 const galleryItems = [
   {
-    image: "/assets/gallery/clamo-lola-02.jpg",
-  },
-  {
-    image: "/assets/gallery/clamo-lola-04.jpg",
-  },
-  {
-    image: "/assets/gallery/clamo-lola-05.jpg",
-  },
-  {
-    image: "/assets/gallery/clamo-lola-07.jpg",
-  },
-  {
-    image: "/assets/gallery/clamo-lola-11.jpg",
-  },
-  {
-    image: "/assets/gallery/clamo-lola-12.jpg",
-  },
-  {
     image: "/assets/gallery/ares-davy-01.jpg",
   },
   {
-    image: "/assets/gallery/ares-davy-02.jpg",
-  },
-  {
-    image: "/assets/gallery/ares-davy-03.jpg",
+    image: "/assets/gallery/clamo-lola-02.jpg",
   },
   {
     image: "/assets/gallery/ares-davy-04.jpg",
   },
   {
-    image: "/assets/gallery/ares-davy-05.jpg",
+    image: "/assets/gallery/ares-davy-02.jpg",
   },
   {
-    image: "/assets/gallery/ares-davy-06.jpg",
+    image: "/assets/gallery/clamo-lola-04.jpg",
   },
   {
     image: "/assets/gallery/ares-davy-07.jpg",
   },
   {
-    image: "/assets/gallery/ares-davy-08.jpg",
+    image: "/assets/gallery/ares-davy-03.jpg",
   },
   {
-    image: "/assets/gallery/ares-davy-09.jpg",
+    image: "/assets/gallery/clamo-lola-05.jpg",
   },
   {
     image: "/assets/gallery/ares-davy-10.jpg",
   },
   {
-    image: "/assets/gallery/ares-davy-11.jpg",
+    image: "/assets/gallery/ares-davy-05.jpg",
   },
   {
-    image: "/assets/gallery/ares-davy-12.jpg",
+    image: "/assets/gallery/clamo-lola-07.jpg",
   },
   {
     image: "/assets/gallery/ares-davy-13.jpg",
   },
   {
-    image: "/assets/gallery/ares-davy-14.jpg",
+    image: "/assets/gallery/ares-davy-06.jpg",
   },
   {
-    image: "/assets/gallery/ares-davy-15.jpg",
+    image: "/assets/gallery/clamo-lola-11.jpg",
   },
   {
     image: "/assets/gallery/ares-davy-16.jpg",
   },
   {
+    image: "/assets/gallery/ares-davy-08.jpg",
+  },
+  {
+    image: "/assets/gallery/clamo-lola-12.jpg",
+  },
+  {
+    image: "/assets/gallery/ares-davy-11.jpg",
+  },
+  {
+    image: "/assets/gallery/ares-davy-09.jpg",
+  },
+  {
+    image: "/assets/gallery/ares-davy-14.jpg",
+  },
+  {
+    image: "/assets/gallery/ares-davy-12.jpg",
+  },
+  {
     image: "/assets/gallery/ares-davy-17.jpg",
+  },
+  {
+    image: "/assets/gallery/ares-davy-15.jpg",
   },
 ];
 
