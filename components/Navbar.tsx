@@ -26,7 +26,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               <a href="#events" className="hover:text-neon-blue transition-colors px-3 py-2 rounded-md font-medium">
-                Tulevat Klubit
+                Tulevat tapahtumat
               </a>
               <a href="#past-events" className="hover:text-gray-300 transition-colors px-3 py-2 rounded-md font-medium text-gray-400">
                 Menneet
@@ -68,7 +68,7 @@ export default function Navbar() {
       <div className={"md:hidden bg-space-black/95 backdrop-blur-md border-t border-white/10 " + (open ? "" : "hidden")}>
         <div className="px-4 py-6 space-y-4">
           <a href="#events" onClick={() => setOpen(false)} className="block hover:text-neon-blue transition-colors py-2 font-medium">
-            Tulevat Klubit
+            Tulevat tapahtumat
           </a>
           <a href="#past-events" onClick={() => setOpen(false)} className="block hover:text-gray-300 transition-colors py-2 font-medium text-gray-400">
             Menneet
