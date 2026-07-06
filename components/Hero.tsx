@@ -28,7 +28,7 @@ export default function Hero() {
           href="#events"
           className="inline-block bg-gradient-to-r from-neon-purple to-neon-blue text-white font-bold py-4 px-10 rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(176,38,255,0.4)]"
         >
-          Katso Tulevat Klubit
+          Katso Tulevat tapahtumat
         </a>
       </div>
     </section>
