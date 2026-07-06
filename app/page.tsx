@@ -32,7 +32,7 @@ export default function Home() {
       <section id="events" className="py-24 relative z-20 border-t border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Tulevat Klubit</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Tulevat tapahtumat</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
