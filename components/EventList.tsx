@@ -37,12 +37,16 @@ export default function EventList({ past }: { past?: boolean }) {
   }, [past]);
 
   useEffect(() => {
-    if (loading || !events.length || past || !window.location.hash) return;
-    const target = document.querySelector(window.location.hash);
+    if (loading || !events.length || past) return;
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get("event");
+    const selector = eventId ? `#event-${eventId}` : window.location.hash;
+    if (!selector) return;
+    const target = document.querySelector(selector);
     if (!target) return;
     window.setTimeout(() => {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
+      target.scrollIntoView({ behavior: "auto", block: "start" });
+    }, 250);
   }, [events, loading, past]);
 
   if (loading) {
