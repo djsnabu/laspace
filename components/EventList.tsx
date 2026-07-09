@@ -36,6 +36,15 @@ export default function EventList({ past }: { past?: boolean }) {
       });
   }, [past]);
 
+  useEffect(() => {
+    if (loading || !events.length || past || !window.location.hash) return;
+    const target = document.querySelector(window.location.hash);
+    if (!target) return;
+    window.setTimeout(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  }, [events, loading, past]);
+
   if (loading) {
     return <p className="text-gray-500 col-span-full text-center py-12">Ladataan tapahtumia...</p>;
   }
