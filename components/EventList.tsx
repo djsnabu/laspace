@@ -60,11 +60,13 @@ export default function EventList({ past }: { past?: boolean }) {
         const bilettiUrl = e.ticket2_url;
         const hasKide = !!kideUrl;
         const hasBiletti = !!bilettiUrl;
+        const eventAnchor = `event-${e.id}`;
 
         return (
           <div
             key={e.id}
-            className={"fade-in visible border rounded-2xl overflow-hidden transition-colors group " + borderColor + (past ? " bg-white/[0.03] border-white/5 opacity-70" : " bg-white/5 border-white/10")}
+            id={eventAnchor}
+            className={"fade-in visible scroll-mt-32 border rounded-2xl overflow-hidden transition-colors group " + borderColor + (past ? " bg-white/[0.03] border-white/5 opacity-70" : " bg-white/5 border-white/10")}
           >
             <div className="h-48 bg-space-gray relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
